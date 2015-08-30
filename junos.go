@@ -396,9 +396,7 @@ func (j *Junos) GetConfig(section, format string) (string, error) {
 	command := fmt.Sprintf("<get-configuration format=\"%s\"><configuration>", format)
 	if section == "full" {
 		command += "</configuration></get-configuration>"
-	}
-
-	if nSecs >= 0 {
+	} else if nSecs >= 0 {
 		for i := 0; i < nSecs; i++ {
 			command += fmt.Sprintf("<%s>", secs[i])
 		}
